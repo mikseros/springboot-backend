@@ -1,6 +1,6 @@
 ## springboot-backend
 
-REST APIs with Spring Boot, Hibernate, MySQL database
+REST API with Spring Boot, Hibernate, MySQL database
 
 Technologies & Tools:
 - Java 17
