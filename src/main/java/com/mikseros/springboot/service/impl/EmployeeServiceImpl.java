@@ -1,9 +1,11 @@
 package com.mikseros.springboot.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.mikseros.springboot.exception.ResourceNotFoundException;
 import com.mikseros.springboot.model.Employee;
 import com.mikseros.springboot.repository.EmployeeRepository;
 import com.mikseros.springboot.service.EmployeeService;
@@ -26,6 +28,20 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@Override
 	public List<Employee> getAllEmployees() {
 		return employeeRepository.findAll();
+	}
+
+	@Override
+	public Employee getEmployeeById(long id) {
+		// Lambda approach:
+		// return employeeRepository.findById(id).orElseThrow(() ->
+		//				new ResourceNotFoundException("Employee", "Id", id));
+		
+		Optional<Employee> employee = employeeRepository.findById(id);
+		if(employee.isPresent()) {
+			return employee.get();
+		} else {
+			throw new ResourceNotFoundException("Employee", "Id", id);
+		}
 	}
 
 }
