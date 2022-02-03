@@ -1,5 +1,7 @@
 package com.mikseros.springboot.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.mikseros.springboot.model.Employee;
@@ -19,6 +21,11 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@Override
 	public Employee saveEmployee(Employee employee) {
 		return employeeRepository.save(employee);
+	}
+
+	@Override
+	public List<Employee> getAllEmployees() {
+		return employeeRepository.findAll();
 	}
 
 }
